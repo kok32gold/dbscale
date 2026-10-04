@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# DBScale outputs
+dbscale-results.json
+*.dbscale.json
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store

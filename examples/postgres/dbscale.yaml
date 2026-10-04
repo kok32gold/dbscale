@@ -1,0 +1,52 @@
+# Example experiment against the demo e-commerce database in docker-compose.yml.
+#
+#   docker compose up -d
+#   dbscale run
+#
+name: ecommerce-demo
+
+database:
+  type: postgres
+  connection: ${DATABASE_URL:-postgresql://postgres:src@127.0.0.1:55432/shop}
+  schemas: [public]
+  sample_common_values: true
+
+scale:
+  targets:
+    - 1x
+    - 10x
+    - 100x
+
+workload:
+  runs: 5
+  warmup: 1
+  timeout_ms: 60000
+  queries:
+    - name: missing-index
+      file: queries/missing_index.sql
+    - name: indexed-lookup
+      file: queries/indexed_lookup.sql
+    - name: large-sort
+      file: queries/large_sort.sql
+    - name: large-join
+      file: queries/large_join.sql
+    - name: aggregation
+      file: queries/aggregation.sql
+    - name: sku-lookup
+      file: queries/high_cardinality_lookup.sql
+
+thresholds:
+  p95_ms: 100
+
+sandbox:
+  type: docker
+  image: postgres:16-alpine
+
+ai:
+  enabled: false
+  provider: openai
+  model: gpt-4o-mini
+  api_key: ${OPENAI_API_KEY:-}
+
+output:
+  json: dbscale-results.json

@@ -1,0 +1,37 @@
+name: Database adapter request
+description: Ask for another database engine
+labels: ["adapter"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You can also open a pull request. See `docs/contributing/adapters.md`.
+        Do not include production credentials or a private schema.
+  - type: input
+    id: database
+    attributes:
+      label: Database
+      placeholder: MySQL, MongoDB, SQL Server
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version you need
+      placeholder: MySQL 8.0
+    validations:
+      required: true
+  - type: textarea
+    id: capabilities
+    attributes:
+      label: Capabilities you need
+      description: For example execution plans, rows scanned, index metadata. Say which ones the engine cannot provide.
+    validations:
+      required: true
+  - type: textarea
+    id: workload
+    attributes:
+      label: Expected workload
+      description: The kind of SQL or API calls you would benchmark. A synthetic example is enough.
+    validations:
+      required: true

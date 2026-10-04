@@ -1,0 +1,38 @@
+# Benchmark with AI off. Interpret later with `dbscale explain` if you want.
+#
+#   docker compose -f ../postgres/docker-compose.yml up -d
+#   dbscale run
+#   dbscale explain dbscale-results.json --provider ollama --model llama3.1
+name: ai-analysis
+
+database:
+  type: postgres
+  connection: ${DATABASE_URL:-postgresql://postgres:src@127.0.0.1:55432/shop}
+  schemas: [public]
+
+scale:
+  targets: [1x, 10x]
+
+workload:
+  runs: 3
+  warmup: 1
+  timeout_ms: 60000
+  queries:
+    - name: missing-index
+      file: ../postgres/queries/missing_index.sql
+
+thresholds:
+  p95_ms: 100
+
+sandbox:
+  type: docker
+  image: postgres:16-alpine
+
+ai:
+  enabled: false
+  provider: openai
+  model: gpt-4o-mini
+  api_key: ${OPENAI_API_KEY:-}
+
+output:
+  json: dbscale-results.json

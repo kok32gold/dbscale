@@ -1,0 +1,43 @@
+# Several statements in one experiment, including a healthy control.
+#
+#   docker compose -f ../postgres/docker-compose.yml up -d
+#   dbscale run
+name: multiple-workloads
+
+database:
+  type: postgres
+  connection: ${DATABASE_URL:-postgresql://postgres:src@127.0.0.1:55432/shop}
+  schemas: [public]
+  sample_common_values: true
+
+scale:
+  targets: [1x, 10x, 100x]
+
+workload:
+  runs: 3
+  warmup: 1
+  timeout_ms: 60000
+  queries:
+    - name: missing-index
+      file: ../postgres/queries/missing_index.sql
+    - name: indexed-lookup
+      file: ../postgres/queries/indexed_lookup.sql
+    - name: large-sort
+      file: ../postgres/queries/large_sort.sql
+    - name: large-join
+      file: ../postgres/queries/large_join.sql
+    - name: aggregation
+      file: ../postgres/queries/aggregation.sql
+
+thresholds:
+  p95_ms: 100
+
+sandbox:
+  type: docker
+  image: postgres:16-alpine
+
+ai:
+  enabled: false
+
+output:
+  json: dbscale-results.json

@@ -1,0 +1,153 @@
+[
+ {
+  "Plan": {
+   "Node Type": "Limit",
+   "Parallel Aware": false,
+   "Async Capable": false,
+   "Startup Cost": 100393.09,
+   "Total Cost": 100393.12,
+   "Plan Rows": 10,
+   "Plan Width": 44,
+   "Actual Startup Time": 394.089,
+   "Actual Total Time": 394.091,
+   "Actual Rows": 10,
+   "Actual Loops": 1,
+   "Shared Hit Blocks": 1942,
+   "Shared Read Blocks": 6392,
+   "Shared Dirtied Blocks": 0,
+   "Shared Written Blocks": 0,
+   "Local Hit Blocks": 0,
+   "Local Read Blocks": 0,
+   "Local Dirtied Blocks": 0,
+   "Local Written Blocks": 0,
+   "Temp Read Blocks": 4287,
+   "Temp Written Blocks": 7781,
+   "Plans": [
+    {
+     "Node Type": "Sort",
+     "Parent Relationship": "Outer",
+     "Parallel Aware": false,
+     "Async Capable": false,
+     "Startup Cost": 100393.09,
+     "Total Cost": 100813.13,
+     "Plan Rows": 168016,
+     "Plan Width": 44,
+     "Actual Startup Time": 391.87,
+     "Actual Total Time": 391.871,
+     "Actual Rows": 10,
+     "Actual Loops": 1,
+     "Sort Key": [
+      "(sum(total)) DESC"
+     ],
+     "Sort Method": "top-N heapsort",
+     "Sort Space Used": 26,
+     "Sort Space Type": "Memory",
+     "Shared Hit Blocks": 1942,
+     "Shared Read Blocks": 6392,
+     "Shared Dirtied Blocks": 0,
+     "Shared Written Blocks": 0,
+     "Local Hit Blocks": 0,
+     "Local Read Blocks": 0,
+     "Local Dirtied Blocks": 0,
+     "Local Written Blocks": 0,
+     "Temp Read Blocks": 4287,
+     "Temp Written Blocks": 7781,
+     "Plans": [
+      {
+       "Node Type": "Aggregate",
+       "Strategy": "Hashed",
+       "Partial Mode": "Simple",
+       "Parent Relationship": "Outer",
+       "Parallel Aware": false,
+       "Async Capable": false,
+       "Startup Cost": 84896.5,
+       "Total Cost": 96762.32,
+       "Plan Rows": 168016,
+       "Plan Width": 44,
+       "Actual Startup Time": 199.072,
+       "Actual Total Time": 375.229,
+       "Actual Rows": 198687,
+       "Actual Loops": 1,
+       "Group Key": [
+        "user_id"
+       ],
+       "Planned Partitions": 8,
+       "HashAgg Batches": 41,
+       "Peak Memory Usage": 8273,
+       "Disk Usage": 31792,
+       "Shared Hit Blocks": 1942,
+       "Shared Read Blocks": 6392,
+       "Shared Dirtied Blocks": 0,
+       "Shared Written Blocks": 0,
+       "Local Hit Blocks": 0,
+       "Local Read Blocks": 0,
+       "Local Dirtied Blocks": 0,
+       "Local Written Blocks": 0,
+       "Temp Read Blocks": 4287,
+       "Temp Written Blocks": 7781,
+       "Plans": [
+        {
+         "Node Type": "Seq Scan",
+         "Parent Relationship": "Outer",
+         "Parallel Aware": false,
+         "Async Capable": false,
+         "Relation Name": "orders",
+         "Alias": "orders",
+         "Startup Cost": 0.0,
+         "Total Cost": 18334.0,
+         "Plan Rows": 1000000,
+         "Plan Width": 12,
+         "Actual Startup Time": 0.008,
+         "Actual Total Time": 45.558,
+         "Actual Rows": 1000000,
+         "Actual Loops": 1,
+         "Shared Hit Blocks": 1942,
+         "Shared Read Blocks": 6392,
+         "Shared Dirtied Blocks": 0,
+         "Shared Written Blocks": 0,
+         "Local Hit Blocks": 0,
+         "Local Read Blocks": 0,
+         "Local Dirtied Blocks": 0,
+         "Local Written Blocks": 0,
+         "Temp Read Blocks": 0,
+         "Temp Written Blocks": 0
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "Planning": {
+   "Shared Hit Blocks": 0,
+   "Shared Read Blocks": 0,
+   "Shared Dirtied Blocks": 0,
+   "Shared Written Blocks": 0,
+   "Local Hit Blocks": 0,
+   "Local Read Blocks": 0,
+   "Local Dirtied Blocks": 0,
+   "Local Written Blocks": 0,
+   "Temp Read Blocks": 0,
+   "Temp Written Blocks": 0
+  },
+  "Planning Time": 0.049,
+  "Triggers": [],
+  "JIT": {
+   "Functions": 12,
+   "Options": {
+    "Inlining": false,
+    "Optimization": false,
+    "Expressions": true,
+    "Deforming": true
+   },
+   "Timing": {
+    "Generation": 0.416,
+    "Inlining": 0.0,
+    "Optimization": 0.292,
+    "Emission": 5.497,
+    "Total": 6.205
+   }
+  },
+  "Execution Time": 395.851
+ }
+]

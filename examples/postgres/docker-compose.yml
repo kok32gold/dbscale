@@ -1,0 +1,24 @@
+# Demo "production" database for trying DBScale without your own data.
+#
+#   docker compose -f examples/postgres/docker-compose.yml up -d --wait
+#   cd examples/postgres && dbscale run
+#
+# The database is seeded from ./init on first start and plays the role of the
+# source database. DBScale opens it read-only; the sandbox it benchmarks is a
+# separate container that DBScale creates and destroys itself.
+services:
+  shop:
+    image: postgres:16-alpine
+    container_name: dbscale-demo-shop
+    environment:
+      POSTGRES_PASSWORD: src
+      POSTGRES_DB: shop
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d shop"]
+      interval: 2s
+      timeout: 2s
+      retries: 30

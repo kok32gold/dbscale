@@ -1,0 +1,66 @@
+name: Bug report
+description: A wrong result, a crash, or a run that does not match the docs
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not paste credentials, production schemas, private SQL, API keys, or customer data.
+        Use the demo in `examples/postgres` or another synthetic schema.
+  - type: input
+    id: version
+    attributes:
+      label: DBScale version
+      description: Output of `dbscale --version`
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: database
+    attributes:
+      label: Database
+      description: Engine and version, for example PostgreSQL 16.4
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: macOS 15, Ubuntu 24.04
+    validations:
+      required: true
+  - type: input
+    id: docker
+    attributes:
+      label: Docker version
+      description: `docker version --format '{{.Server.Version}}'`, or "not used"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: Commands and a minimal dbscale.yaml. Redact the connection string.
+      placeholder: |
+        docker compose -f examples/postgres/docker-compose.yml up -d --wait
+        cd examples/missing-index
+        dbscale run
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Terminal output or the relevant part of dbscale-results.json. Remove secrets first.
