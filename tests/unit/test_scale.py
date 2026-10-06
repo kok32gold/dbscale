@@ -61,21 +61,20 @@ def test_resolve_uniform_factor(schema):
     assert plan.baseline_rows["orders"] == 10_000
 
 
-def test_resolve_explicit_rows_scales_unlisted_tables_by_implied_factor(schema):
+def test_resolve_explicit_rows_leaves_unlisted_tables_at_baseline(schema):
     plan = resolve_scale([ScaleTarget.parse({"users": "200k"})], schema)
     t = plan.targets[0]
     assert t.rows["users"] == 200_000
-    # users 2000 -> 200k is 100x, so orders (10k) becomes 1M
-    assert t.rows["orders"] == 1_000_000
+    assert t.rows["orders"] == plan.baseline_rows["orders"]
+    assert t.rows["products"] == plan.baseline_rows["products"]
     assert t.label == "users=200K"
 
 
-def test_resolve_mixed_explicit_rows_uses_geometric_mean(schema):
+def test_resolve_mixed_explicit_rows_leaves_unlisted_at_baseline(schema):
     plan = resolve_scale([ScaleTarget.parse({"users": "20k", "orders": "10M"})], schema)
     t = plan.targets[0]
     assert t.rows["users"] == 20_000 and t.rows["orders"] == 10_000_000
-    # implied factors 10x and 1000x -> geometric mean 100x -> products 500 -> 50k
-    assert t.rows["products"] == 50_000
+    assert t.rows["products"] == plan.baseline_rows["products"]
 
 
 def test_resolve_empty_tables_use_base_rows(schema):

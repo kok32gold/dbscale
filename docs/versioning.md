@@ -27,10 +27,23 @@ Experimental surfaces can change in a minor 0.x release. The changelog will say 
 
 ## Releases
 
+Pushing a tag `vX.Y.Z` runs `.github/workflows/release.yml`. The workflow
+re-runs the unit tests and the PostgreSQL 16 integration tests, builds the
+sdist and wheel, attaches build provenance, and publishes a GitHub Release.
+
+PyPI publishing is skipped unless the repository variable `PYPI_PUBLISH` is
+the string `true`. The package is not on PyPI until that is set and this
+repository is a trusted publisher for the `dbscale` project. Until then,
+install from git.
+
+`0.1.0` is recorded in the changelog. The Git tag `v0.1.0` is not created
+by the docs. Tag the commit that matches that changelog section, not a later
+commit that also contains `[Unreleased]` work.
+
 1. Update `CHANGELOG.md` (move `Unreleased` to a version and date).
 2. Set `__version__` and `pyproject.toml`.
-3. Tag `vX.Y.Z` on a commit whose CI is green.
-4. Publish the package only from that tag.
+3. Wait until CI is green on that commit.
+4. Tag `vX.Y.Z` and push the tag.
 
 There is no private release pipeline. If a tag exists, the commit in this
 repository is the release.

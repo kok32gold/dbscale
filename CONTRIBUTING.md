@@ -17,7 +17,7 @@ Requirements:
 You do not need a local PostgreSQL install, an LLM account, or a cloud account.
 
 ```bash
-git clone https://github.com/dbscale/dbscale
+git clone https://github.com/kok32gold/dbscale.git
 cd dbscale
 python3.11 -m venv .venv
 source .venv/bin/activate
@@ -217,6 +217,9 @@ API key in CI.
 - Redact passwords and API tokens in errors (`dbscale.redact`).
 
 ## Reporting issues
+
+Starter tasks: [docs/contributing/starter-issues.md](docs/contributing/starter-issues.md).
+What the project is not going to become: [ROADMAP.md](ROADMAP.md).
 
 Use the GitHub issue templates. Include the DBScale version, database version,
 operating system, and Docker version. A minimal `dbscale.yaml` and a

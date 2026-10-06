@@ -1,4 +1,4 @@
-.PHONY: install lint format format-check typecheck test test-unit test-integration coverage
+.PHONY: install lint format format-check typecheck test test-unit test-integration coverage docs docs-build
 
 install:
 	pip install -e ".[dev]"
@@ -26,3 +26,9 @@ test-integration:
 
 coverage:
 	pytest tests/unit tests/stress --cov=dbscale --cov-branch --cov-report=term-missing
+
+docs:
+	mkdocs serve
+
+docs-build:
+	mkdocs build --strict

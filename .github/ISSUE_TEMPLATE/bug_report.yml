@@ -33,7 +33,7 @@ body:
     id: docker
     attributes:
       label: Docker version
-      description: `docker version --format '{{.Server.Version}}'`, or "not used"
+      description: "Output of `docker version --format '{{.Server.Version}}'`, or \"not used\""
     validations:
       required: true
   - type: textarea

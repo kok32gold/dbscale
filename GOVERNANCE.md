@@ -5,10 +5,14 @@ no contributor ladder, and no approval required before you open a pull request.
 
 ## Maintainers
 
-The people with write access to the repository review pull requests and publish
-releases. The list is whoever GitHub shows as a maintainer of this repository.
-That set can change. The project does not depend on one person remaining available:
-the build, tests, and documentation all live in this repository.
+[@kok32gold](https://github.com/kok32gold) currently has write access, reviews
+pull requests, and publishes releases. That is a GitHub account, not a project
+name. The repository can move to a GitHub organization later without changing
+the license or the history.
+
+The set of maintainers can change. The project does not depend on one person
+remaining available: the build, tests, and documentation all live in this
+repository.
 
 ## How a change gets in
 

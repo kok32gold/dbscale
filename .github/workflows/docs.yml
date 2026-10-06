@@ -1,0 +1,44 @@
+name: Docs
+
+# Fails until Settings → Pages → Source is GitHub Actions.
+# After that, this publishes https://kok32gold.github.io/dbscale/
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/**
+      - mkdocs.yml
+      - .github/workflows/docs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy GitHub Pages
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e ".[docs]"
+      - name: Build
+        run: mkdocs build --strict
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v5

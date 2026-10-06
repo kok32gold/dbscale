@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: If you use DBScale in research, cite it as below.
+type: software
+title: DBScale
+abstract: >-
+  Database scalability experimentation framework. DBScale inspects a database
+  read-only, builds an isolated synthetic copy, scales that copy, runs your
+  SQL, and reports where performance breaks.
+authors:
+  - name: The DBScale Authors
+repository-code: https://github.com/kok32gold/dbscale
+url: https://github.com/kok32gold/dbscale
+license: Apache-2.0
+version: 0.1.0
+date-released: 2026-10-04
+keywords:
+  - database
+  - postgresql
+  - benchmark
+  - scalability
+  - synthetic-data

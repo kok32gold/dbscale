@@ -30,10 +30,10 @@ scale:
       orders: 1B
 ```
 
-Numbers accept `K`, `M`, `B` suffixes and underscores (`1_000_000`). Tables not listed are scaled by the
-geometric mean of the factors implied by the listed ones, so the rest of the schema keeps a sensible
-proportion. Composite-key tables are capped at the product of their parents' sizes (a `(order_id,
-product_id)` table cannot have more rows than `orders × products`).
+Numbers accept `K`, `M`, `B` suffixes and underscores (`1_000_000`). Tables not listed stay at the
+source baseline (`1x`). Factors (`10x`) still multiply every table. Composite-key tables are capped at
+the product of their parents' sizes (a `(order_id, product_id)` table cannot have more rows than
+`orders × products`).
 
 Targets are sorted by total rows and run in that order. Labels are `10x` or `users=10M,orders=100M` and
 appear in findings, measurements and the report.

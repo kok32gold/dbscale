@@ -1,0 +1,26 @@
+name: Labels
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/labels.json
+      - .github/scripts/sync_labels.py
+      - .github/workflows/labels.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  sync:
+    name: Sync labels
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Upsert labels
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 .github/scripts/sync_labels.py

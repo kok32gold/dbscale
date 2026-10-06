@@ -1,6 +1,6 @@
 # License
 
-DBScale is licensed under the [Apache License 2.0](../LICENSE).
+DBScale is licensed under the [Apache License 2.0](https://github.com/kok32gold/dbscale/blob/main/LICENSE).
 
 You may use, modify, and redistribute this software, including in commercial
 products and private forks, under those terms. There is no fee to the authors,

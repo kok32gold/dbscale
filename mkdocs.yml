@@ -1,0 +1,83 @@
+site_name: DBScale
+site_description: Know how your database will behave before it gets big.
+site_url: https://kok32gold.github.io/dbscale/
+repo_url: https://github.com/kok32gold/dbscale
+repo_name: kok32gold/dbscale
+edit_uri: edit/main/docs/
+copyright: Copyright 2026 The DBScale Authors
+
+docs_dir: docs
+exclude_docs: |
+  qa/**
+
+theme:
+  name: material
+  logo: assets/mark.svg
+  favicon: assets/mark.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+  features:
+    - navigation.expand
+    - navigation.footer
+    - content.code.copy
+    - search.suggest
+    - toc.follow
+
+extra_css:
+  - assets/extra.css
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+
+nav:
+  - Home: README.md
+  - Getting started:
+      - Install: getting-started/install.md
+      - Quickstart: getting-started/quickstart.md
+  - Concepts:
+      - Scaling: concepts/scaling.md
+      - Synthetic data: concepts/synthetic-data.md
+      - Findings and recommendations: concepts/findings-and-recommendations.md
+  - Guides:
+      - Configuration: experiments/configuration.md
+      - Results: experiments/results.md
+      - Workloads: workloads/overview.md
+      - Synthetic data pipeline: synthetic-data/overview.md
+      - Analysis: analysis/overview.md
+      - PostgreSQL: databases/postgres.md
+      - AI advisor: ai/advisor.md
+      - Troubleshooting: troubleshooting/common.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - Layers: architecture/layers.md
+      - Extensions: architecture/extensions.md
+      - Adapter contract: architecture/adapter-contract.md
+      - Capabilities: architecture/capabilities.md
+  - Contributing:
+      - Adapters: contributing/adapters.md
+      - Analyzers: contributing/analyzers.md
+      - AI providers: contributing/ai-providers.md
+      - Starter issues: contributing/starter-issues.md
+  - Project:
+      - License: license.md
+      - Dependencies: dependencies.md
+      - Versioning: versioning.md
+      - Support: https://github.com/kok32gold/dbscale/blob/main/SUPPORT.md
+      - Roadmap: https://github.com/kok32gold/dbscale/blob/main/ROADMAP.md

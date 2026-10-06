@@ -35,10 +35,13 @@ def test_missing_extension_type_is_stored_as_text_and_its_index_is_skipped():
         method="hnsw",
         definition='CREATE INDEX idx_emb ON evidence_passages USING hnsw ("embedding" vector_cosine_ops)',
     )
-    schema = _table(embedding, indexes=[
-        Index(name="evidence_passages_pkey", columns=["id"], primary=True, method="btree"),
-        index,
-    ])
+    schema = _table(
+        embedding,
+        indexes=[
+            Index(name="evidence_passages_pkey", columns=["id"], primary=True, method="btree"),
+            index,
+        ],
+    )
     notes = adapt_schema(
         schema,
         present_types={"integer"},

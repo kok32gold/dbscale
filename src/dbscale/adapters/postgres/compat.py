@@ -157,12 +157,7 @@ def _already_adapted(schema: Schema) -> bool:
 
 
 def _needed_extensions(schema: Schema) -> list[str]:
-    names = {
-        col.type_extension
-        for table in schema.tables
-        for col in table.columns
-        if col.type_extension
-    }
+    names = {col.type_extension for table in schema.tables for col in table.columns if col.type_extension}
     return sorted(names)
 
 

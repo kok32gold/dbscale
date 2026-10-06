@@ -1,0 +1,90 @@
+name: Release
+
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: lint, types, unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Lint and types
+        run: |
+          ruff check src tests
+          ruff format --check src tests
+          mypy src
+      - name: Unit tests
+        run: pytest tests/unit tests/stress
+
+  integration:
+    name: PostgreSQL 16
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Integration tests
+        env:
+          DBSCALE_TEST_PG_IMAGE: postgres:16-alpine
+        run: pytest tests/integration
+
+  release:
+    name: GitHub Release
+    needs: [test, integration]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Build
+        run: |
+          pip install build
+          python -m build
+      - name: Attest
+        uses: actions/attest-build-provenance@v4
+        with:
+          subject-path: dist/*
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/*
+          if-no-files-found: error
+      - name: Publish the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${GITHUB_REF_NAME}" dist/* --title "${GITHUB_REF_NAME}" --generate-notes
+
+  pypi:
+    name: PyPI
+    needs: release
+    if: vars.PYPI_PUBLISH == 'true'
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@v1.14.2

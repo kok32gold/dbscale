@@ -1,0 +1,32 @@
+[
+  {
+    "name": "adapter",
+    "color": "1FA6A0",
+    "description": "Database adapter"
+  },
+  {
+    "name": "ai",
+    "color": "F2B544",
+    "description": "Optional AI advisor"
+  },
+  {
+    "name": "ci",
+    "color": "5C6B7A",
+    "description": "Continuous integration"
+  },
+  {
+    "name": "conduct",
+    "color": "6E4B8A",
+    "description": "Code of conduct report"
+  },
+  {
+    "name": "postgres",
+    "color": "336791",
+    "description": "PostgreSQL"
+  },
+  {
+    "name": "security",
+    "color": "B42318",
+    "description": "Security"
+  }
+]

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="DBScale: know how your database will behave before it gets big">
+  <rect width="1280" height="640" fill="#102033"/>
+  <rect x="0" y="0" width="18" height="640" fill="#1FA6A0"/>
+  <g transform="translate(96 176) scale(4.5)">
+    <path fill="#157F78" d="M10 27v14c0 3 5.4 5 12 5s12-2 12-5V27c0 3-5.4 5-12 5s-12-2-12-5z"/>
+    <ellipse cx="22" cy="27" rx="12" ry="5" fill="#3DCCC7"/>
+    <ellipse cx="22" cy="27" rx="6.5" ry="2.2" fill="#102033" opacity=".28"/>
+    <rect x="40" y="40" width="5" height="12" rx="1.2" fill="#F2B544"/>
+    <rect x="47" y="32" width="5" height="20" rx="1.2" fill="#F2B544"/>
+    <rect x="54" y="22" width="5" height="30" rx="1.2" fill="#F2B544"/>
+  </g>
+  <text x="460" y="250" fill="#F4F1EA" font-family="ui-sans-serif, system-ui, Segoe UI, Helvetica, Arial, sans-serif" font-size="84" font-weight="700">DBScale</text>
+  <text x="460" y="330" fill="#D5E7E4" font-family="ui-sans-serif, system-ui, Segoe UI, Helvetica, Arial, sans-serif" font-size="32">Know how your database will behave</text>
+  <text x="460" y="378" fill="#D5E7E4" font-family="ui-sans-serif, system-ui, Segoe UI, Helvetica, Arial, sans-serif" font-size="32">before it gets big.</text>
+  <text x="460" y="470" fill="#F2B544" font-family="ui-sans-serif, system-ui, Segoe UI, Helvetica, Arial, sans-serif" font-size="22" letter-spacing="1.5">POSTGRESQL / SYNTHETIC SCALE / YOUR SQL</text>
+</svg>

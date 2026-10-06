@@ -26,6 +26,14 @@ coverage.xml
 dbscale-results.json
 *.dbscale.json
 
+# Local experiment. `dbscale init` writes these.
+# Example configs under examples/ stay tracked.
+/dbscale.yaml
+/queries/example.sql
+
+# MkDocs
+/site/
+
 # Editors / OS
 .idea/
 .vscode/

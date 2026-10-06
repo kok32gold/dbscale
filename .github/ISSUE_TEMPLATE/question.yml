@@ -1,0 +1,28 @@
+name: Question
+description: A usage question, after you have read the docs
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not paste credentials, production schemas, private SQL, API keys, or customer data.
+        Security reports go through Security → Report a vulnerability, not this form.
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: What you already tried
+      description: Commands, the example you ran, and the part of the docs you read.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: DBScale version
+      description: Output of `dbscale --version`, or the git revision
+      placeholder: 0.1.0

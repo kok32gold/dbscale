@@ -13,6 +13,8 @@ An LLM key is not required. A cloud account is not required.
 ## From a clone
 
 ```bash
+git clone https://github.com/kok32gold/dbscale.git
+cd dbscale
 python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"    # contributors
@@ -21,13 +23,21 @@ pip install -e .           # run only
 dbscale --version
 ```
 
-## From a release, later
+## From git, without a clone
+
+```bash
+pip install "dbscale @ git+https://github.com/kok32gold/dbscale.git"
+```
+
+That installs the current default branch. It is not a versioned release.
+
+## From PyPI, after the first release
 
 ```bash
 pip install dbscale
 ```
 
-The project is pre-1.0. Until packages are published, install from a clone.
+`dbscale` is not on PyPI yet. The command above fails until a tagged release is published. See [versioning](../versioning.md).
 
 ## Check the install
 

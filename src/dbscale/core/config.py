@@ -164,7 +164,7 @@ def load_config(path: str | Path) -> ExperimentConfig:
 
 DEFAULT_CONFIG_TEMPLATE = """\
 # DBScale experiment configuration
-# Docs: https://github.com/dbscale/dbscale
+# Docs: https://github.com/kok32gold/dbscale
 name: {name}
 
 database:

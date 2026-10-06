@@ -7,7 +7,6 @@ source schema's cardinality estimates into exact per-table row counts.
 
 from __future__ import annotations
 
-import math
 import re
 from typing import Any
 
@@ -138,9 +137,8 @@ def resolve_scale(targets: list[ScaleTarget], schema: Schema, base_rows: int = 1
     """Turn user targets into exact per-table row counts.
 
     * Uniform factor: every table is multiplied by the factor.
-    * Explicit rows: listed tables take the given count; unlisted tables are
-      scaled by the geometric mean of the listed tables' implied factors, so
-      ``{users: 10M}`` on a 100K-user database scales everything 100x.
+    * Explicit rows: listed tables take the given count; unlisted tables stay
+      at the source baseline. ``{users: 10M}`` grows ``users`` only.
     """
     baseline = baseline_rows_for(schema, base_rows)
     if not baseline:
@@ -161,10 +159,8 @@ def resolve_scale(targets: list[ScaleTarget], schema: Schema, base_rows: int = 1
                     f"Known tables: {', '.join(sorted(baseline))}"
                 )
             explicit = {schema.table(t).name: n for t, n in target.rows.items()}  # type: ignore[union-attr]
-            implied = [max(n, 1) / max(baseline[name], 1) for name, n in explicit.items()]
-            implied_factor = math.exp(sum(math.log(f) for f in implied) / len(implied))
             for name, n in baseline.items():
-                rows[name] = max(1, explicit.get(name, int(round(n * implied_factor))))
+                rows[name] = max(1, explicit[name] if name in explicit else n)
         total = sum(rows.values())
         factor = total / max(sum(baseline.values()), 1)
         label = target.label

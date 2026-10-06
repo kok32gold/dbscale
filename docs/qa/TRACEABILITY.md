@@ -13,7 +13,7 @@ Each row is a product requirement, the test that locks it, and the result from t
 | Duplicate query names fail before sandbox work, exit 2 | `test_duplicate_query_names`, `test_duplicate_query_names_are_configuration_errors` | pass |
 | Missing query file fails before sandbox work, exit 2 | `test_missing_query_file`, `test_missing_query_file_exits_as_configuration_error` | pass |
 | Query file is read as a path, including odd names | `test_query_file_with_shell_metacharacters_is_a_path` | pass |
-| Scale factors, explicit counts, implied factor, duplicates | `test_scale` | pass |
+| Scale factors, explicit counts, unlisted tables stay at baseline, duplicates | `test_scale` | pass |
 | Negative counts rejected | `test_scale_rejects_negative_and_clamps_explicit_zero` | pass |
 | Explicit 0 rows becomes 1 | `test_scale_rejects_negative_and_clamps_explicit_zero` | pass |
 | Larger factor never yields fewer rows | `test_larger_factor_never_reduces_rows_and_plans_are_deterministic` | pass |

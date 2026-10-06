@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import os
+import re
+
 import pytest
 
 from dbscale.adapters import AdapterError, get_adapter
@@ -29,8 +32,16 @@ def sandbox(sandbox_url):
 def test_registry_connects(source_url):
     adapter = get_adapter("postgres").connect(source_url, read_only=True)
     info = adapter.server_info()
-    assert info.type == "postgres" and info.version.startswith("16")
+    assert info.type == "postgres"
+    assert info.version.split(".", 1)[0] == _postgres_major()
     adapter.close()
+
+
+def _postgres_major() -> str:
+    """Major version of ``DBSCALE_TEST_PG_IMAGE``. CI runs 15 and 16; local default is 16."""
+    image = os.environ.get("DBSCALE_TEST_PG_IMAGE", "postgres:16-alpine")
+    match = re.search(r":(\d+)(?:\.|-|$)", image)
+    return match.group(1) if match else "16"
 
 
 def test_read_only_connection_refuses_writes(source, source_url):
@@ -295,9 +306,15 @@ def test_parallel_load_covers_every_key_and_restores_the_primary_key(sandbox, mo
             timeout_ms=5_000,
         )
         assert pk.rows_returned == 1
-        explained = sandbox.explain("SELECT * FROM bulk WHERE id = 42", timeout_ms=10_000)
-        summary = PlanSummary.from_root(explained.root)
-        assert summary.scans[0].kind in (NodeKind.INDEX_SCAN, NodeKind.INDEX_ONLY_SCAN)
+        # 200 integer rows fit in one page, so the cost model seq-scans even with a valid
+        # primary key. Turning sequential scans off proves the rebuilt index can serve the lookup.
+        sandbox.execute("SET enable_seqscan = off", timeout_ms=5_000)
+        try:
+            explained = sandbox.explain("SELECT * FROM bulk WHERE id = 42", timeout_ms=10_000)
+            summary = PlanSummary.from_root(explained.root)
+            assert summary.scans[0].kind in (NodeKind.INDEX_SCAN, NodeKind.INDEX_ONLY_SCAN)
+        finally:
+            sandbox.execute("RESET enable_seqscan", timeout_ms=5_000)
     finally:
         sandbox.drop_schema(schema)
 

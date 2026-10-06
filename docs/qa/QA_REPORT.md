@@ -42,7 +42,7 @@ The documented sequential-scan threshold now matches the code: scans under 100,0
 ## What was validated
 
 * Config: missing file, empty file, non-mapping YAML, bad types, empty targets, unknown sandbox type, env substitution, duplicate query names, missing query file, Unicode names.
-* Scale: factors, explicit counts, geometric mean for unlisted tables, duplicate labels, unknown tables, empty schema, negative rejection, explicit zero raised to 1, `1.5x`, and factors up to 10,000x as integer math.
+* Scale: factors, explicit counts (unlisted tables stay at baseline), duplicate labels, unknown tables, empty schema, negative rejection, explicit zero raised to 1, `1.5x`, and factors up to 10,000x as integer math.
 * Generation: dependency order, keys, foreign keys, skew, composite keys, self-references, null fractions, determinism for a fixed seed. Foreign-key specs point at a planned parent.
 * Benchmark: warmup excluded from samples, one query's error does not stop the next, explain failure keeps latency.
 * Analysis: sequential scan at 99,999 vs 100,000, selective bump, unfiltered lower severity, excessive-scan dedupe, healthy vs sudden scaling, single-scale does not invent an exponent, threshold just under and just over p95.
