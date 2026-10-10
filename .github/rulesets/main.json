@@ -1,0 +1,68 @@
+{
+  "name": "main",
+  "target": "branch",
+  "enforcement": "active",
+  "bypass_actors": [
+    {
+      "actor_id": 18124137,
+      "actor_type": "User",
+      "bypass_mode": "always"
+    }
+  ],
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/main"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 1,
+        "dismiss_stale_reviews_on_push": true,
+        "require_code_owner_review": true,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": true,
+        "allowed_merge_methods": ["merge", "squash", "rebase"]
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          {
+            "context": "lint, types, unit (3.11)",
+            "integration_id": 15368
+          },
+          {
+            "context": "lint, types, unit (3.12)",
+            "integration_id": 15368
+          },
+          {
+            "context": "PostgreSQL 16",
+            "integration_id": 15368
+          },
+          {
+            "context": "PostgreSQL 15",
+            "integration_id": 15368
+          },
+          {
+            "context": "docs",
+            "integration_id": 15368
+          },
+          {
+            "context": "Analyze",
+            "integration_id": 15368
+          },
+          {
+            "context": "Review dependencies",
+            "integration_id": 15368
+          }
+        ]
+      }
+    }
+  ]
+}

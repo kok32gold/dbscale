@@ -32,7 +32,7 @@ Your Database
 
 ## Try it
 
-Requirements: Python 3.11+, Docker. No account, no API key, no PyPI package yet.
+Requirements: Python 3.11+, Docker. No account and no API key. Install from a clone of this repository.
 
 ```bash
 git clone https://github.com/kok32gold/dbscale.git
@@ -44,15 +44,7 @@ docker compose -f examples/postgres/docker-compose.yml up -d --wait
 cd examples/simple-postgres && dbscale run
 ```
 
-More examples: [examples/README.md](examples/README.md) (missing index, scaling risk, several workloads, optional AI).
-
-Install the default branch into another environment:
-
-```bash
-pip install "dbscale @ git+https://github.com/kok32gold/dbscale.git"
-```
-
-`pip install dbscale` does not work until the first PyPI release. See [docs/getting-started/install.md](docs/getting-started/install.md).
+More examples: [examples/README.md](examples/README.md) (missing index, scaling risk, several workloads, optional AI). Details: [docs/getting-started/install.md](docs/getting-started/install.md).
 
 ## Why?
 
@@ -194,8 +186,6 @@ The architecture is designed to support additional databases through adapters. S
 ## Status
 
 **0.1.0, pre-1.0.** APIs and the result format can still change. Breaking changes are called out in [CHANGELOG.md](CHANGELOG.md). See [docs/versioning.md](docs/versioning.md).
-
-The changelog records 0.1.0. A Git tag and a PyPI release are separate steps and are not done until they exist on GitHub and PyPI.
 
 ## Docs
 

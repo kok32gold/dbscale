@@ -2,7 +2,8 @@
 
 Runtime dependencies are pinned loosely in `pyproject.toml` (`>=` a known-good
 floor). Development dependencies are the same. Nothing is fetched from a
-private registry. `pip install -e ".[dev]"` from PyPI is the whole install.
+private registry. Clone the repository and run `make install`. That
+installs the dependencies. DBScale itself is not a published pip package.
 
 No dependency is allowed to require an account, send telemetry, or run only
 in one cloud. httpx is used when *you* enable an AI provider. It is not used

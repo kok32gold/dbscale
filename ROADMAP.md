@@ -6,7 +6,7 @@ This is the public direction, not a commitment and not a date. The changelog is 
 
 - Keep the source database read-only and the benchmark free of telemetry.
 - PostgreSQL is the reference adapter, tested on 15 and 16.
-- Publish installable releases. Until the first PyPI release, install from this repository.
+- Install from a clone of this repository.
 - Make the result useful at the scales people actually ask about, without turning the sandbox into a production replica.
 
 ## Next, if contributors pick them up

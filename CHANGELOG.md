@@ -15,7 +15,7 @@ All notable changes to DBScale are documented here. The format follows
 
 - Project mark, citation file, support policy, public roadmap, and starter issues.
 - MkDocs site, GitHub Pages workflow, and a docs build in CI.
-- Release workflow for `vX.Y.Z` tags. PyPI publishing stays off until the `PYPI_PUBLISH` repository variable is set.
+- Release workflow for `vX.Y.Z` tags. It publishes a GitHub Release, not a pip package.
 - Dependabot, CodeQL, dependency review, and `pip-audit`.
 - Adapter capabilities. A database that cannot report plans or rows scanned leaves those fields null instead of zero. PostgreSQL declares the metrics it collects.
 - Contributor docs: security policy, code of conduct, governance, license rationale, dependency notes, extension guides, and focused examples.

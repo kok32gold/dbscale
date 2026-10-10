@@ -1,0 +1,26 @@
+---
+description: Apply Humanizer to customer-facing microcopy and prose (docs, README, CLI strings)
+globs:
+  - README.md
+  - CHANGELOG.md
+  - ROADMAP.md
+  - SUPPORT.md
+  - docs/**
+  - examples/**/README.md
+  - .github/ISSUE_TEMPLATE/**
+  - .github/pull_request_template.md
+  - src/dbscale/cli/**
+  - src/dbscale/reporting/**
+alwaysApply: false
+---
+
+# Customer-visible copy
+
+When **writing or editing** user-facing text in matched paths (not when changing code logic only):
+
+1. Read and follow `.cursor/skills/humanizer/SKILL.md`.
+2. Use **embedded mode** from that skill: return only the final copy in files/commits; no “before/after” essay unless the user asked for a review.
+3. Keep dbscale **factual**: do not invent features, benchmarks, or support claims. Ask if a sentence needs a missing fact.
+4. Technical docs stay **plain and neutral**; marketing/README can keep a direct voice but still pass Humanizer (no “thrilled to announce”, triads, or punchy closers).
+
+If the user is drafting microcopy in chat, run the same skill on the draft before presenting it.

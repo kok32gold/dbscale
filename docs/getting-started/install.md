@@ -23,21 +23,7 @@ pip install -e .           # run only
 dbscale --version
 ```
 
-## From git, without a clone
-
-```bash
-pip install "dbscale @ git+https://github.com/kok32gold/dbscale.git"
-```
-
-That installs the current default branch. It is not a versioned release.
-
-## From PyPI, after the first release
-
-```bash
-pip install dbscale
-```
-
-`dbscale` is not on PyPI yet. The command above fails until a tagged release is published. See [versioning](../versioning.md).
+There is no published package. Use the clone above.
 
 ## Check the install
 

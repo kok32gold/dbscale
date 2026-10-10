@@ -71,20 +71,3 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release create "${GITHUB_REF_NAME}" dist/* --title "${GITHUB_REF_NAME}" --generate-notes
-
-  pypi:
-    name: PyPI
-    needs: release
-    if: vars.PYPI_PUBLISH == 'true'
-    runs-on: ubuntu-latest
-    environment: pypi
-    permissions:
-      id-token: write
-      contents: read
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: dist
-          path: dist
-      - name: Publish
-        uses: pypa/gh-action-pypi-publish@v1.14.2

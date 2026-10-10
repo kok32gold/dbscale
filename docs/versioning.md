@@ -30,11 +30,7 @@ Experimental surfaces can change in a minor 0.x release. The changelog will say 
 Pushing a tag `vX.Y.Z` runs `.github/workflows/release.yml`. The workflow
 re-runs the unit tests and the PostgreSQL 16 integration tests, builds the
 sdist and wheel, attaches build provenance, and publishes a GitHub Release.
-
-PyPI publishing is skipped unless the repository variable `PYPI_PUBLISH` is
-the string `true`. The package is not on PyPI until that is set and this
-repository is a trusted publisher for the `dbscale` project. Until then,
-install from git.
+Install remains a clone of this repository. There is no published package.
 
 `0.1.0` is recorded in the changelog. The Git tag `v0.1.0` is not created
 by the docs. Tag the commit that matches that changelog section, not a later
